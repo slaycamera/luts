@@ -1,0 +1,19 @@
+name: validate-luts
+
+on:
+  push:
+    paths:
+      - "luts/**"
+      - "tools/**"
+      - ".github/workflows/validate.yml"
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: node tools/validate-luts.mjs
